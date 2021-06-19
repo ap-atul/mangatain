@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.atul.mangatain.ui.browse.BrowseFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,8 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public void setFragments() {
+        fragments.add(BrowseFragment.newInstance());
+        fragments.add(BrowseFragment.newInstance());
     }
 
     @NonNull
