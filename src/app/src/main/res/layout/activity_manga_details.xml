@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.detail.MangaDetails">
 
     <RelativeLayout
@@ -17,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:alpha="0.4"
-            android:foreground="@drawable/gradient"
-            android:contentDescription="@string/image"/>
+            android:contentDescription="@string/image"
+            android:foreground="@drawable/gradient" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/manga_art_layout"
@@ -28,10 +27,11 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="15dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp"
             android:clickable="true"
             android:focusable="true"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            app:cardMaxElevation="10dp"
             app:rippleColor="?colorPrimary">
 
             <ImageView
@@ -40,45 +40,45 @@
                 android:layout_height="150dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/image"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop" />
 
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp"
             android:layout_alignBottom="@id/background_art"
-            android:layout_toEndOf="@id/manga_art_layout">
+            android:layout_marginBottom="20dp"
+            android:layout_toEndOf="@id/manga_art_layout"
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
                 android:maxLines="2"
-                android:textSize="@dimen/text_large"
                 android:textColor="@color/colorTextHigh"
-                android:textStyle="bold"
-                android:fontFamily="@font/nunito_sans"/>
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
                 android:maxLines="2"
-                android:textSize="@dimen/text_big"
                 android:textColor="@color/colorTextMed"
-                android:fontFamily="@font/nunito_sans"/>
+                android:textSize="@dimen/text_big" />
 
             <androidx.appcompat.widget.AppCompatRatingBar
                 android:id="@+id/rating"
+                style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:numStars="10"
                 android:isIndicator="true"
-                style="@style/Widget.AppCompat.RatingBar.Small"/>
+                android:numStars="10" />
 
         </LinearLayout>
 
@@ -86,41 +86,58 @@
             android:id="@+id/summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_big_med"
             android:layout_below="@id/background_art"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito_sans"
             android:textColor="@color/colorTextHigh"
-            android:fontFamily="@font/nunito_sans"/>
+            android:textSize="@dimen/text_big_med" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tag_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/summary"/>
+            android:layout_below="@id/summary" />
 
         <TextView
             android:id="@+id/total_chapters"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tag_list"
             android:layout_marginTop="10dp"
-            android:textSize="@dimen/text_big"
-            android:textStyle="bold"
+            android:fontFamily="@font/nunito_sans"
             android:textColor="@color/colorTextHigh"
-            android:fontFamily="@font/nunito_sans"/>
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tag_list"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentEnd="true"
+            android:background="?android:attr/actionBarItemBackground"
+            android:contentDescription="@string/image"
+            android:padding="5dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            app:tint="@color/colorTextHigh"
+            app:srcCompat="@drawable/ic_sort" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chapter_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/chapter_list"
-            android:layout_below="@id/total_chapters"/>
+            android:layout_below="@id/total_chapters" />
 
         <ProgressBar
+            android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="visible"
-            android:id="@+id/progress_bar"/>
+            android:visibility="visible" />
 
     </RelativeLayout>
 

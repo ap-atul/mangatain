@@ -1,16 +1,25 @@
 package com.atul.mangatain.ui.detail;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+import com.github.piasy.biv.indicator.ProgressIndicator;
+import com.github.piasy.biv.view.BigImageView;
 
 import java.util.List;
 
@@ -30,11 +39,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.MyVewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyVewHolder holder, int position) {
-        Glide.with(holder.page.getContext())
-                .load(MTConstants.BASE_URL + pages.get(position))
-                .override(500, 900)
-                .centerInside()
-                .into(holder.page);
+        holder.page.showImage(Uri.parse(MTConstants.BASE_URL + pages.get(position)));
     }
 
     @Override
@@ -43,12 +48,37 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.MyVewHolder> {
     }
 
     public static class MyVewHolder extends RecyclerView.ViewHolder {
-        private final ImageView page;
+        private final BigImageView page;
+        private final ProgressBar progressBar;
 
         public MyVewHolder(@NonNull View itemView) {
             super(itemView);
 
             page = itemView.findViewById(R.id.page);
+            progressBar = itemView.findViewById(R.id.image_progress);
+
+            page.setOptimizeDisplay(false);
+            page.setProgressIndicator(new ProgressIndicator() {
+                @Override
+                public View getView(BigImageView parent) {
+                    return null;
+                }
+
+                @Override
+                public void onStart() {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onProgress(int progress) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
         }
     }
 }
