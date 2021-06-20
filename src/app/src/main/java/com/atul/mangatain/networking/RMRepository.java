@@ -21,11 +21,10 @@ public class RMRepository extends ViewModel implements RListener {
     MutableLiveData<Manga> chapters = null;
     MutableLiveData<Chapter> pages = null;
     RClient client;
-    static int page  = 0;
+    static int page  = 1;
 
     public RMRepository() {
         client = new RClient(this);
-        page = 1;
     }
 
     public MutableLiveData<List<Manga>>  getMangas(){

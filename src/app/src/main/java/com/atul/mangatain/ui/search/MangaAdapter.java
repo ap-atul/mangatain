@@ -1,6 +1,5 @@
-package com.atul.mangatain.ui.browse;
+package com.atul.mangatain.ui.search;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +40,6 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MyViewHolder
             .with(holder.art)
             .load(MTConstants.BASE_URL + mangaList.get(position).art)
             .into(holder.art);
-
-        if(position == mangaList.size() - 1) {
-            listener.loadMore();
-        }
     }
 
     @Override

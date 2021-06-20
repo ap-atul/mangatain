@@ -94,7 +94,9 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
         if (manga.rating != null && manga.rating.length() > 0)
             rating.setRating(Float.parseFloat(manga.rating));
 
-        tagList.setAdapter(new TagAdapter(manga.tags));
+        if(manga.tags != null)
+            tagList.setAdapter(new TagAdapter(manga.tags));
+
         chapterAdapter = new ChapterAdapter(this, manga.chapters);
         chapterList.setAdapter(chapterAdapter);
         progressBar.setVisibility(View.GONE);
