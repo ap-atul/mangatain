@@ -15,7 +15,7 @@
             android:id="@+id/background_art"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:alpha="0.4"
+            android:alpha="0.3"
             android:contentDescription="@string/image"
             android:foreground="@drawable/gradient" />
 
@@ -27,12 +27,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="15dp"
-            android:clickable="true"
-            android:focusable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
-            app:cardMaxElevation="10dp"
-            app:rippleColor="?colorPrimary">
+            app:cardElevation="20dp">
 
             <ImageView
                 android:id="@+id/manga_art"
@@ -90,47 +86,55 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_sans"
             android:textColor="@color/colorTextHigh"
-            android:textSize="@dimen/text_big_med" />
+            android:textSize="@dimen/text_big" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tag_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/summary" />
 
-        <TextView
-            android:id="@+id/total_chapters"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/more_info_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
             android:layout_below="@id/tag_list"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/nunito_sans"
-            android:textColor="@color/colorTextHigh"
-            android:textSize="@dimen/text_big"
-            android:textStyle="bold" />
+            android:background="@color/colorBackgroundHigh" >
 
-        <ImageButton
-            android:id="@+id/sort"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tag_list"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentEnd="true"
-            android:background="?android:attr/actionBarItemBackground"
-            android:contentDescription="@string/image"
-            android:padding="5dp"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            app:tint="@color/colorTextHigh"
-            app:srcCompat="@drawable/ic_sort" />
+            <TextView
+                android:id="@+id/total_chapters"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/nunito_sans"
+                android:textColor="@color/colorTextHigh"
+                android:textSize="@dimen/text_big"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:background="?android:attr/actionBarItemBackground"
+                android:contentDescription="@string/image"
+                android:padding="5dp"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                app:tint="@color/colorTextHigh"
+                app:srcCompat="@drawable/ic_sort" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chapter_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/total_chapters" />
+            android:layout_below="@id/more_info_layout" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
