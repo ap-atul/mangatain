@@ -36,7 +36,7 @@
             android:maxLines="2"
             android:textSize="@dimen/text_big_med"
             android:textStyle="bold"
-            android:textColor="@color/colorTextHigh"
+            android:textColor="@color/white"
             tools:ignore="RtlCompat"
             android:fontFamily="@font/nunito_sans"/>
 

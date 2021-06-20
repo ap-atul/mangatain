@@ -84,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/background_art"
             android:layout_marginTop="10dp"
+            android:padding="5dp"
             android:fontFamily="@font/nunito_sans"
             android:textColor="@color/colorTextHigh"
             android:textSize="@dimen/text_big" />
