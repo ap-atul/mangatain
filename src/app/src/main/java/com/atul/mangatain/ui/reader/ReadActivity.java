@@ -1,39 +1,41 @@
 package com.atul.mangatain.ui.reader;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.Chapter;
 import com.atul.mangatain.networking.RMRepository;
 import com.atul.mangatain.ui.detail.PageAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ReadActivity extends AppCompatActivity {
 
-    private RecyclerView pageLayout;
+    private PageAdapter pageAdapter;
+    private List<String> pages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
         RMRepository repository = new ViewModelProvider(this).get(RMRepository.class);
+        pages = new ArrayList<>();
 
-        pageLayout = findViewById(R.id.pages_layout);
+        RecyclerView pageLayout = findViewById(R.id.pages_layout);
         pageLayout.setLayoutManager(new LinearLayoutManager(this));
+        pageAdapter = new PageAdapter(pages);
 
         Chapter chapter = getIntent().getParcelableExtra("chapter");
         if(chapter != null)
-            repository.pages(chapter);
-        else
-            Log.d(MTConstants.DEBUG_TAG, "nyll");
-
-        repository.getPages().observeForever(chp ->
-                pageLayout.setAdapter(new PageAdapter(chp.pages)));
+            repository.pages(chapter).observeForever(page -> {
+                pages.add(page);
+                pageAdapter.notifyDataSetChanged();
+            });
     }
 }

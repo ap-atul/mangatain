@@ -8,26 +8,24 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atul.mangatain.R;
-import com.atul.mangatain.helpers.ListHelper;
 import com.atul.mangatain.model.Manga;
+import com.atul.mangatain.networking.RMRepository;
 import com.atul.mangatain.ui.detail.MangaDetails;
-import com.atul.readm.controller.RClient;
-import com.atul.readm.controller.RListener;
-import com.atul.readm.model.Chapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchFragment extends Fragment implements MangaListener, RListener {
+public class SearchFragment extends Fragment implements MangaListener {
 
-    private RecyclerView mangaLayout;
-    private RClient client;
-    private final MutableLiveData<List<Manga>> mangaList = new MutableLiveData<>();
+    private List<Manga> mangas;
+    private RMRepository repository;
+    private MangaAdapter mangaAdapter;
 
     public SearchFragment() { }
 
@@ -38,22 +36,25 @@ public class SearchFragment extends Fragment implements MangaListener, RListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        repository = new ViewModelProvider(requireActivity()).get(RMRepository.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        client = new RClient(this);
+        mangas = new ArrayList<>();
 
         SearchView searchView = view.findViewById(R.id.search);
-        mangaLayout = view.findViewById(R.id.manga_layout);
+        RecyclerView mangaLayout = view.findViewById(R.id.manga_layout);
         mangaLayout.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        mangaAdapter = new MangaAdapter(this, mangas);
+        mangaLayout.setAdapter(mangaAdapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                client.search(query);
+                updateData(query);
                 searchView.clearFocus();
                 return false;
             }
@@ -64,32 +65,19 @@ public class SearchFragment extends Fragment implements MangaListener, RListener
             }
         });
 
-        mangaList.observeForever(this::setUp);
         return view;
     }
 
-    private void setUp(List<Manga> mangas) {
-        mangaLayout.setAdapter(new MangaAdapter(this, mangas));
+    private void updateData(String query) {
+        repository.search(query).observeForever(manga -> {
+            mangas.add(manga);
+            mangaAdapter.notifyDataSetChanged();
+        });
     }
 
     @Override
     public void click(Manga manga) {
         startActivity(new Intent(requireActivity(), MangaDetails.class)
         .putExtra("manga", manga));
-    }
-
-    @Override
-    public void setMangas(List<com.atul.readm.model.Manga> list) {
-        mangaList.postValue(ListHelper.fromRMangaList(list));
-    }
-
-    @Override
-    public void setChapters(com.atul.readm.model.Manga manga) {
-
-    }
-
-    @Override
-    public void setPages(Chapter chapter) {
-
     }
 }

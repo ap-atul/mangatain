@@ -49,13 +49,11 @@ public class BrowseFragment extends Fragment implements MangaListener{
         adapter = new MangaAdapter(this, mangaList);
         mangaLayout.setAdapter(adapter);
 
-        repository.getMangas().observeForever(mangas -> {
-            mangaList.addAll(mangas);
+        repository.browse(null).observeForever(manga -> {
+            mangaList.add(manga);
             adapter.notifyDataSetChanged();
         });
 
-        // call
-        repository.browse(null);
         return view;
     }
 

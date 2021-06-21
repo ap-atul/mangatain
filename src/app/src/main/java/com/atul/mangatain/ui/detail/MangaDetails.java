@@ -22,7 +22,9 @@ import com.atul.mangatain.networking.RMRepository;
 import com.atul.mangatain.ui.reader.ReadActivity;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 public class MangaDetails extends AppCompatActivity implements ChapterListener {
@@ -35,11 +37,11 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
     private RatingBar rating;
     private TextView totalChapters;
     private RecyclerView tagList;
-    private RecyclerView chapterList;
     private ProgressBar progressBar;
 
     private Manga manga;
     private ChapterAdapter chapterAdapter;
+    private List<Chapter> chapters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
         setContentView(R.layout.activity_manga_details);
 
         RMRepository repository = new ViewModelProvider(this).get(RMRepository.class);
+        chapters = new ArrayList<>();
 
         art = findViewById(R.id.manga_art);
         background = findViewById(R.id.background_art);
@@ -61,17 +64,20 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
         tagList = findViewById(R.id.tag_list);
         tagList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
-        chapterList = findViewById(R.id.chapter_list);
+        RecyclerView chapterList = findViewById(R.id.chapter_list);
         chapterList.setLayoutManager(new LinearLayoutManager(this));
 
         Manga m = getIntent().getParcelableExtra("manga");
         if (m != null) {
             setUpUi(m);
-            repository.chapters(m);
             progressBar.setVisibility(View.VISIBLE);
+
+            repository.chapters(m).observeForever(this::setUpAdapter);
+            repository.details(m).observeForever(this::setUpUi);
         }
 
-        repository.getChapters().observeForever(this::setUpUi);
+        chapterAdapter = new ChapterAdapter(this, chapters);
+        chapterList.setAdapter(chapterAdapter);
 
         sort.setOnClickListener(v -> {
             if(manga != null) {
@@ -79,6 +85,13 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
                 chapterAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void setUpAdapter(Chapter chapter) {
+        chapters.add(chapter);
+        chapterAdapter.notifyDataSetChanged();
+
+        totalChapters.setText(String.format(Locale.getDefault(), "Chapters %d", chapters.size()));
     }
 
     private void setUpUi(Manga manga) {
@@ -89,7 +102,6 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
         title.setText(manga.title);
         author.setText(String.format(Locale.getDefault(), "%s • %s", manga.author, manga.status));
         summary.setText(manga.summary);
-        totalChapters.setText(String.format(Locale.getDefault(), "Chapters %d", manga.chapters.size()));
 
         if (manga.rating != null && manga.rating.length() > 0)
             rating.setRating(Float.parseFloat(manga.rating));
@@ -97,8 +109,6 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
         if(manga.tags != null)
             tagList.setAdapter(new TagAdapter(manga.tags));
 
-        chapterAdapter = new ChapterAdapter(this, manga.chapters);
-        chapterList.setAdapter(chapterAdapter);
         progressBar.setVisibility(View.GONE);
     }
 
