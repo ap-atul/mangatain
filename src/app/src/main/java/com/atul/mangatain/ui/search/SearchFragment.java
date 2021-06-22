@@ -21,9 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchFragment extends Fragment implements MangaListener {
+public class SearchFragment extends Fragment implements MangaListener, SearchView.OnQueryTextListener {
 
-    private List<Manga> mangas;
+    private SearchView searchView;
+
+    private List<Manga> mangaList;
     private RMRepository repository;
     private MangaAdapter mangaAdapter;
 
@@ -43,34 +45,23 @@ public class SearchFragment extends Fragment implements MangaListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        mangas = new ArrayList<>();
+        mangaList = new ArrayList<>();
 
-        SearchView searchView = view.findViewById(R.id.search);
+        searchView = view.findViewById(R.id.search);
+        searchView.setOnQueryTextListener(this);
+
         RecyclerView mangaLayout = view.findViewById(R.id.manga_layout);
         mangaLayout.setLayoutManager(new GridLayoutManager(requireContext(), 3));
-        mangaAdapter = new MangaAdapter(this, mangas);
+        mangaAdapter = new MangaAdapter(this, mangaList);
         mangaLayout.setAdapter(mangaAdapter);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                updateData(query);
-                searchView.clearFocus();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
 
         return view;
     }
 
-    private void updateData(String query) {
+    private void update(String query) {
         repository.search(query).observeForever(manga -> {
-            mangas.add(manga);
+            mangaList.clear();
+            mangaList.addAll(manga);
             mangaAdapter.notifyDataSetChanged();
         });
     }
@@ -79,5 +70,17 @@ public class SearchFragment extends Fragment implements MangaListener {
     public void click(Manga manga) {
         startActivity(new Intent(requireActivity(), MangaDetails.class)
         .putExtra("manga", manga));
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        update(query);
+        searchView.clearFocus();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }

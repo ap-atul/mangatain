@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -49,9 +50,13 @@ public class BrowseFragment extends Fragment implements MangaListener{
         adapter = new MangaAdapter(this, mangaList);
         mangaLayout.setAdapter(adapter);
 
+        ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+
         repository.browse(null).observeForever(manga -> {
-            mangaList.add(manga);
+            mangaList.addAll(manga);
             adapter.notifyDataSetChanged();
+
+            progressBar.setVisibility(View.GONE);
         });
 
         return view;

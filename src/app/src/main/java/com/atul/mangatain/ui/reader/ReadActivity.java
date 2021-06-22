@@ -1,12 +1,14 @@
 package com.atul.mangatain.ui.reader;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.Chapter;
 import com.atul.mangatain.networking.RMRepository;
@@ -17,8 +19,8 @@ import java.util.List;
 
 public class ReadActivity extends AppCompatActivity {
 
-    private PageAdapter pageAdapter;
     private List<String> pages;
+    private PageAdapter pageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +32,15 @@ public class ReadActivity extends AppCompatActivity {
         RecyclerView pageLayout = findViewById(R.id.pages_layout);
         pageLayout.setLayoutManager(new LinearLayoutManager(this));
         pageAdapter = new PageAdapter(pages);
+        pageLayout.setAdapter(pageAdapter);
 
         Chapter chapter = getIntent().getParcelableExtra("chapter");
-        if(chapter != null)
+        if (chapter != null)
             repository.pages(chapter).observeForever(page -> {
-                pages.add(page);
+                pages.addAll(page);
                 pageAdapter.notifyDataSetChanged();
             });
+        else
+            Log.d(MTConstants.DEBUG_TAG, "null");
     }
 }

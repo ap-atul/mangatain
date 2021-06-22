@@ -18,11 +18,16 @@ class RConstants {
 	// user agent
 	public static final String USER_AGENT = "Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2) Gecko/20110201";
 
+	// headers
+	public static final HashMap<String, String> HEADERS = new HashMap<String, String> () {{
+		put("Cache-Control", "public max-age=604800");
+	}};
+
 	// time out
 	public static final int TIMEOUT = 10000;
 
 	// all genres
-	public static final HashMap<String, String> getGenres() {
+	public static HashMap<String, String> getGenres() {
 		HashMap<String, String> genres = new HashMap<>();
 		genres.put("Action", "action");
 		genres.put("Adventure", "adventure");
