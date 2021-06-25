@@ -89,17 +89,33 @@
             android:textColor="@color/colorTextHigh"
             android:textSize="@dimen/text_big" />
 
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/add_to_lib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/summary"
+            android:layout_marginEnd="20dp"
+            android:text="@string/add_to_library"
+            android:textColor="@color/colorTextMed"
+            android:contentDescription="@string/image"
+            app:backgroundTint="@color/fabTint"
+            app:icon="@drawable/ic_add_to_lib"
+            app:iconTint="@color/widgetsColor"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tag_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/summary" />
+            android:layout_below="@id/add_to_lib" />
 
         <LinearLayout
             android:id="@+id/more_info_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_below="@id/tag_list"
             android:background="@color/colorBackgroundHigh" >

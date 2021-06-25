@@ -15,13 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.Manga;
 import com.atul.mangatain.networking.RMRepository;
+import com.atul.mangatain.ui.browse.adapter.MangaAdapter;
+import com.atul.mangatain.ui.browse.adapter.MangaListener;
 import com.atul.mangatain.ui.detail.MangaDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class BrowseFragment extends Fragment implements MangaListener{
+public class BrowseFragment extends Fragment implements MangaListener {
 
     private RMRepository repository;
     private MangaAdapter adapter;

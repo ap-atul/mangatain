@@ -11,4 +11,18 @@ public class MTConstants {
     };
 
     public static final String DEBUG_TAG = "tain_debug";
+
+    // database constants
+    public static final String MANGA_DB = "manga_db";
+    public static final String MANGA_TABLE = "manga";
+
+    public static final String[] OOPS = new String[] {
+            "¯\\_(ツ)_/¯",
+            "[¬º-°]¬",
+            "¯\\_ಠ_ಠ_/¯",
+            "¯\\_(ツ)_/¯",
+            "ಥ_ಥ",
+            "(ø_ø)",
+            "＼（〇_ｏ）／"
+    };
 }

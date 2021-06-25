@@ -16,6 +16,8 @@ import com.atul.mangatain.R;
 import com.atul.mangatain.model.Manga;
 import com.atul.mangatain.networking.RMRepository;
 import com.atul.mangatain.ui.detail.MangaDetails;
+import com.atul.mangatain.ui.search.adapter.MangaAdapter;
+import com.atul.mangatain.ui.search.adapter.MangaListener;
 
 import java.util.ArrayList;
 import java.util.List;

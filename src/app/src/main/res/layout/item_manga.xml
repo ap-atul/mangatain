@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="3dp"
+    android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/manga_art_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="3dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
         android:clickable="true"
         android:focusable="true"
         app:rippleColor="?colorPrimary">

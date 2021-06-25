@@ -8,7 +8,7 @@
     <color name="widgetsColor">#fafafa</color>
     <color name="systemBarsColor">#313131</color>
 
-    <color name="shuffleFabTint">@color/dialogsBackground</color>
+    <color name="fabTint">@color/dialogsBackground</color>
 
     <!--    background colors -->
     <color name="colorBackgroundHigh">#212121</color>

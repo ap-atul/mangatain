@@ -5,22 +5,49 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import com.atul.mangatain.MTConstants;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(tableName = MTConstants.MANGA_TABLE)
 public class Manga implements Parcelable {
-    public String title;
+    public static final Creator<Manga> CREATOR = new Creator<Manga>() {
+        @Override
+        public Manga createFromParcel(Parcel in) {
+            return new Manga(in);
+        }
+
+        @Override
+        public Manga[] newArray(int size) {
+            return new Manga[size];
+        }
+    };
+    @NonNull
+    @PrimaryKey
+    public String title = null;
     public String art;
     public String url;
-    public String chapter;
     public String rating;
-    public String status;
     public String summary;
+    @Ignore
+    public String chapter;
+    @Ignore
+    public String status;
+    @Ignore
     public String author;
+    @Ignore
     public String authorUrl;
+    @Ignore
     public List<String> tags;
+    @Ignore
     public List<Chapter> chapters;
+
+    public Manga(){}
 
     public Manga(String title, String url, String summary, String rating, String art, List<String> tags) {
         this.title = this.ifNull(title);
@@ -46,18 +73,6 @@ public class Manga implements Parcelable {
         chapters = new ArrayList<>();
         in.readTypedList(chapters, Chapter.CREATOR);
     }
-
-    public static final Creator<Manga> CREATOR = new Creator<Manga>() {
-        @Override
-        public Manga createFromParcel(Parcel in) {
-            return new Manga(in);
-        }
-
-        @Override
-        public Manga[] newArray(int size) {
-            return new Manga[size];
-        }
-    };
 
     @NonNull
     public String toString() {
