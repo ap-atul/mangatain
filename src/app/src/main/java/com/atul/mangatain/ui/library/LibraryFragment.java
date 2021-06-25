@@ -65,9 +65,9 @@ public class LibraryFragment extends Fragment implements MangaListener {
             if(mangas.size() == 0) {
                 oops.setText(MTConstants.OOPS[new Random().nextInt(MTConstants.OOPS.length)]);
                 oopsText.setText(R.string.oops_text);
+                visibility(View.VISIBLE);
             } else {
-                oopsText.setVisibility(View.GONE);
-                oops.setVisibility(View.GONE);
+                visibility(View.GONE);
             }
 
             mangaList.clear();
@@ -77,6 +77,11 @@ public class LibraryFragment extends Fragment implements MangaListener {
         });
 
         return view;
+    }
+
+    public void visibility(int mode){
+        oopsText.setVisibility(mode);
+        oops.setVisibility(mode);
     }
 
     @Override
