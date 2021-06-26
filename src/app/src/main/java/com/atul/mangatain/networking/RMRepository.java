@@ -12,9 +12,7 @@ import java.util.Set;
 
 public class RMRepository extends ViewModel {
     MutableLiveData<List<Manga>> mangas = new MutableLiveData<>();
-    MutableLiveData<Manga> detail = new MutableLiveData<>();
     MutableLiveData<List<Manga>> search = new MutableLiveData<>();
-    MutableLiveData<List<Chapter>> chapters = new MutableLiveData<>();
     MutableLiveData<List<String>> pages = new MutableLiveData<>();
     static int page  = 1;
 
@@ -28,19 +26,9 @@ public class RMRepository extends ViewModel {
         return mangas;
     }
 
-    public MutableLiveData<Manga> detail(Manga manga){
-        RClient.details(detail, manga);
-        return detail;
-    }
-
     public MutableLiveData<List<Manga>> search(String query){
         RClient.search(search, query);
         return search;
-    }
-
-    public MutableLiveData<List<Chapter>> chapters(Manga manga){
-        RClient.chapters(chapters, manga);
-        return chapters;
     }
 
     public MutableLiveData<List<String>> pages(Chapter chapter){

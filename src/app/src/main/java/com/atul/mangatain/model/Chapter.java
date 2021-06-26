@@ -4,6 +4,8 @@ package com.atul.mangatain.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class Chapter implements Parcelable {
@@ -11,6 +13,8 @@ public class Chapter implements Parcelable {
     public String url;
     public String publication;
     public List<String> pages;
+
+    public Chapter(){}
 
     public Chapter(String title, String url, String publication, List<String> pages) {
         this.title = this.ifNull(title);
@@ -38,6 +42,7 @@ public class Chapter implements Parcelable {
         }
     };
 
+    @NonNull
     public String toString() {
         return "Chapter [title=" + this.title + ", url=" + this.url + ", publication=" + this.publication + ", pages=" + this.pages + "]";
     }

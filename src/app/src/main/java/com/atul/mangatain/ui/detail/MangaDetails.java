@@ -2,7 +2,6 @@ package com.atul.mangatain.ui.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,10 +20,10 @@ import com.atul.mangatain.database.MangaDao;
 import com.atul.mangatain.database.MangaDatabase;
 import com.atul.mangatain.model.Chapter;
 import com.atul.mangatain.model.Manga;
-import com.atul.mangatain.networking.RMRepository;
 import com.atul.mangatain.ui.detail.adapter.ChapterAdapter;
 import com.atul.mangatain.ui.detail.adapter.ChapterListener;
 import com.atul.mangatain.ui.detail.adapter.TagAdapter;
+import com.atul.mangatain.ui.detail.viewmodel.MangaDetailsViewModel;
 import com.atul.mangatain.ui.reader.ReadActivity;
 import com.bumptech.glide.Glide;
 
@@ -44,19 +43,21 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
     private TextView totalChapters;
     private RecyclerView tagList;
     private ProgressBar progressBar;
+    private RecyclerView chapterList;
 
     private ChapterAdapter chapterAdapter;
-    private List<Chapter> chapters;
     private MangaDao dao;
     private Manga m;
+    private MangaDetailsViewModel repository;
+    private List<Chapter> chuckChapters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manga_details);
-        chapters = new ArrayList<>();
-        RMRepository repository = new ViewModelProvider(this).get(RMRepository.class);
+        repository = new ViewModelProvider(this).get(MangaDetailsViewModel.class);
         dao = MangaDatabase.getDatabase(this).dao();
+        chuckChapters = new ArrayList<>();
 
         art = findViewById(R.id.manga_art);
         background = findViewById(R.id.background_art);
@@ -70,35 +71,51 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
 
         ImageView sort = findViewById(R.id.sort);
         sort.setOnClickListener(v -> {
-            Collections.reverse(chapters);
+            Collections.reverse(chuckChapters);
             chapterAdapter.notifyDataSetChanged();
         });
 
         tagList = findViewById(R.id.tag_list);
         tagList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
-        RecyclerView chapterList = findViewById(R.id.chapter_list);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        chapterList.setLayoutManager(llm);
-        chapterAdapter = new ChapterAdapter(this, chapters);
-        chapterList.setAdapter(chapterAdapter);
+        chapterList = findViewById(R.id.chapter_list);
+        chapterList.setLayoutManager(new LinearLayoutManager(this));
 
-        m = getIntent().getParcelableExtra("manga");
-        if (m != null) {
-            repository.detail(m).observe(this, this::setUpUi);
-            repository.chapters(m).observe(this, chapter -> {
-                chapters.addAll(chapter);
-                chapterAdapter.notifyDataSetChanged();
-
-                progressBar.setVisibility(View.GONE);
-                totalChapters.setText(String.format(Locale.getDefault(), "Chapters %d", chapters.size()));
-            });
-        }
+        parseIncomingData();
 
         findViewById(R.id.add_to_lib).setOnClickListener(v -> {
             MangaDatabase.databaseExecutor.execute(() -> dao.add(m));
             Toast.makeText(this, "Manga added to library", Toast.LENGTH_SHORT).show();
         });
+    }
+
+    private void parseIncomingData() {
+        String page = getIntent().getStringExtra("page");
+        if (page != null && page.equals("lib")) {
+            m = getIntent().getParcelableExtra("manga");
+            setUpUi(m);
+
+            if (m.chapters != null) updateUi();
+
+        } else {
+            m = getIntent().getParcelableExtra("manga");
+            if (m != null) {
+                repository.detail(m).observe(this, this::setUpUi);
+                repository.chapters(m).observe(this, chapters -> {
+                    m.chapters = chapters;
+                    updateUi();
+                });
+            }
+        }
+    }
+
+    private void updateUi() {
+        chuckChapters.addAll(m.chapters);
+        chapterAdapter = new ChapterAdapter(this, chuckChapters);
+        chapterList.setAdapter(chapterAdapter);
+
+        progressBar.setVisibility(View.GONE);
+        totalChapters.setText(String.format(Locale.getDefault(), "Chapters %d", m.chapters.size()));
     }
 
     private void setUpUi(Manga manga) {

@@ -6,13 +6,13 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.atul.mangatain.MTConstants;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity(tableName = MTConstants.MANGA_TABLE)
 public class Manga implements Parcelable {
@@ -27,6 +27,7 @@ public class Manga implements Parcelable {
             return new Manga[size];
         }
     };
+
     @NonNull
     @PrimaryKey
     public String title = null;
@@ -34,17 +35,12 @@ public class Manga implements Parcelable {
     public String url;
     public String rating;
     public String summary;
-    @Ignore
     public String chapter;
-    @Ignore
+
     public String status;
-    @Ignore
     public String author;
-    @Ignore
     public String authorUrl;
-    @Ignore
     public List<String> tags;
-    @Ignore
     public List<Chapter> chapters;
 
     public Manga(){}

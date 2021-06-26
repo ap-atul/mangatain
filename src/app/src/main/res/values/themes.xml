@@ -2,8 +2,8 @@
 <resources>
 
     <style name="BaseTheme.Default" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/red</item>
-        <item name="colorSecondary">@color/red</item>
+        <item name="colorPrimary">@color/deep_purple</item>
+        <item name="colorSecondary">@color/deep_purple</item>
         <item name="colorPrimaryDark">@color/systemBarsColor</item>
     </style>
 

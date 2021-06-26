@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <color name="red">#ef9a9a</color>
+    <color name="deep_purple">#b39ddb</color>
+    <color name="deep_orange">#ff8a65</color>
 
     <color name="windowBackground">#212121</color>
     <color name="dialogsBackground">#212121</color>

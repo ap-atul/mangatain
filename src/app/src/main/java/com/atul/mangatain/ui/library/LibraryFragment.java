@@ -62,7 +62,7 @@ public class LibraryFragment extends Fragment implements MangaListener {
 
         database.dao().all().observe(requireActivity(), mangas -> {
 
-            if(mangas.size() == 0) {
+            if (mangas.size() == 0) {
                 oops.setText(MTConstants.OOPS[new Random().nextInt(MTConstants.OOPS.length)]);
                 oopsText.setText(R.string.oops_text);
                 visibility(View.VISIBLE);
@@ -79,7 +79,7 @@ public class LibraryFragment extends Fragment implements MangaListener {
         return view;
     }
 
-    public void visibility(int mode){
+    public void visibility(int mode) {
         oopsText.setVisibility(mode);
         oops.setVisibility(mode);
     }
@@ -87,7 +87,8 @@ public class LibraryFragment extends Fragment implements MangaListener {
     @Override
     public void click(Manga manga) {
         startActivity(new Intent(requireActivity(), MangaDetails.class)
-                .putExtra("manga", manga));
+                .putExtra("manga", manga)
+                .putExtra("page", "lib"));
     }
 
     @Override

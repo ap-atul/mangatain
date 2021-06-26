@@ -14,7 +14,7 @@ import java.util.List;
 
 @Dao
 public interface MangaDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void add(Manga manga);
 
     @Delete

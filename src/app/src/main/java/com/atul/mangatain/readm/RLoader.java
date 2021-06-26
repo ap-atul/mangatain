@@ -73,6 +73,7 @@ class RLoader {
 
 				chapterList.add(new Chapter(title, url, pub, null));
 			}
+			manga.chapters = chapterList;
 			chapters.postValue(chapterList);
 
 		} catch (IOException e) {
