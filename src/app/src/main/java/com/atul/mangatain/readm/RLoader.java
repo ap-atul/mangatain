@@ -39,8 +39,13 @@ class RLoader {
 				String rating = null;
 				if(data.length >= 2)
 					rating = data[1];
-				
-				String art = manga.select("div[class=poster-with-subject]").select("img").attr("src");
+
+				String art;
+				if(genre == null)
+					art = manga.select("div[class=poster-with-subject]").select("img").attr("src");
+				else
+					art = manga.select("div[class=poster-with-subject]").select("img").attr("data-src");
+
 				List<String> tags = new ArrayList<>();
 				Elements aa = manga.select("span[class=genres]").select("a");
 				for (Element tag : aa) {

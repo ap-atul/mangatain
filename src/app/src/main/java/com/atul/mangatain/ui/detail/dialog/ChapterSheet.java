@@ -30,11 +30,13 @@ public class ChapterSheet extends BottomSheetDialog implements ChapterListener {
 
         TextView totalChapters = findViewById(R.id.total_chapters);
         RecyclerView chapterLayout = findViewById(R.id.chapter_list);
+        assert chapterLayout != null;
         chapterLayout.setHasFixedSize(true);
         chapterLayout.setItemViewCacheSize(10);
         chapterLayout.setLayoutManager(new LinearLayoutManager(getContext()));
 
         ImageView sort = findViewById(R.id.sort);
+        assert sort != null;
         sort.setOnClickListener(v -> {
             Collections.reverse(chapters);
             chapterAdapter.notifyDataSetChanged();
@@ -42,6 +44,7 @@ public class ChapterSheet extends BottomSheetDialog implements ChapterListener {
 
         chapterAdapter = new ChapterAdapter(this, chapters);
         chapterLayout.setAdapter(chapterAdapter);
+        assert totalChapters != null;
         totalChapters.setText(String.format(Locale.getDefault(), "Chapters %d", chapters.size()));
     }
 

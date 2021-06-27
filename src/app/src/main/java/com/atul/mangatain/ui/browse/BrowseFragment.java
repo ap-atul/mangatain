@@ -2,6 +2,7 @@ package com.atul.mangatain.ui.browse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,24 +13,29 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.Manga;
 import com.atul.mangatain.networking.RMRepository;
 import com.atul.mangatain.ui.browse.adapter.MangaAdapter;
 import com.atul.mangatain.ui.browse.adapter.MangaListener;
+import com.atul.mangatain.ui.browse.filter.FilterSheet;
 import com.atul.mangatain.ui.detail.MangaDetails;
+import com.atul.mangatain.ui.detail.dialog.adapter.GenreListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class BrowseFragment extends Fragment implements MangaListener {
+public class BrowseFragment extends Fragment implements MangaListener, GenreListener {
 
     private RMRepository repository;
     private MangaAdapter adapter;
 
     private final List<Manga> mangaList = new ArrayList<>();
     private static int page = 1;
+    private static String genre = null;
+    private FilterSheet sheet;
 
     public BrowseFragment() { }
 
@@ -55,12 +61,17 @@ public class BrowseFragment extends Fragment implements MangaListener {
 
         ProgressBar progressBar = view.findViewById(R.id.progress_bar);
 
-        repository.browse(page, null).observeForever(manga -> {
+        repository.browse(page, genre).observeForever(manga -> {
             mangaList.addAll(manga);
             page += 1;
             adapter.notifyDataSetChanged();
 
             progressBar.setVisibility(View.GONE);
+        });
+
+        view.findViewById(R.id.filter).setOnClickListener(v -> {
+            sheet = new FilterSheet(requireContext(), this, genre);
+            sheet.show();
         });
 
         return view;
@@ -74,6 +85,15 @@ public class BrowseFragment extends Fragment implements MangaListener {
 
     @Override
     public void loadMore() {
-        repository.browse(page, null);
+        repository.browse(page, genre);
+    }
+
+    @Override
+    public void select(String gen) {
+        genre =  gen;
+        page = 1; // restarting from first page
+        mangaList.clear(); // clearing to load all in current genre
+        repository.browse(page, genre);
+        sheet.dismiss();
     }
 }

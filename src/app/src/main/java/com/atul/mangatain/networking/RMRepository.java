@@ -32,8 +32,4 @@ public class RMRepository extends ViewModel {
         RClient.pages(pages, chapter);
         return pages;
     }
-
-    public Set<String> genres(){
-        return RClient.genres();
-    }
 }

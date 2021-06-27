@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp">
+
+    <LinearLayout
+        android:id="@+id/info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/info_filter"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/text_big"
+            android:textAllCaps="true"
+            android:letterSpacing="0.2"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextLow"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nunito_sans"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/reset_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_margin="5dp"
+            android:text="@string/reset" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@id/info_layout"
+        android:layout_margin="5dp"
+        android:background="@drawable/tab_indicator" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/genre_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider" />
+
+</RelativeLayout>

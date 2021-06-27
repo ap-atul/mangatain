@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,11 +46,11 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
     private MangaDao dao;
     private Manga m;
     private MangaDetailsViewModel repository;
-    private ChapterSheet chapterSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(MTPreferences.getThemeMode(getApplicationContext()));
         setTheme(ThemeHelper.getTheme(MTPreferences.getTheme(getApplicationContext())));
         setContentView(R.layout.activity_manga_details);
 
@@ -115,7 +116,7 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
     }
 
     private void setUpChapterSheet() {
-        chapterSheet = new ChapterSheet(this, m.chapters);
+        ChapterSheet chapterSheet = new ChapterSheet(this, m.chapters);
         chapterSheet.show();
     }
 }

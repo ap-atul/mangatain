@@ -3,6 +3,7 @@ package com.atul.mangatain;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager.widget.ViewPager;
 
 import com.atul.mangatain.adapter.MainPagerAdapter;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(MTPreferences.getThemeMode(getApplicationContext()));
         setTheme(ThemeHelper.getTheme(MTPreferences.getTheme(getApplicationContext())));
         setContentView(R.layout.activity_main);
         BigImageViewer.initialize(GlideImageLoader.with(getApplicationContext()));
