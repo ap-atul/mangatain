@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/BaseTheme.Default">
-        <activity android:name=".ui.reader.ReadActivity"></activity>
+
+        <activity android:name=".ui.reader.ReadActivity" />
         <activity android:name=".ui.detail.MangaDetails" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -24,6 +25,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

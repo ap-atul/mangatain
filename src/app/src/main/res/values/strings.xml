@@ -6,4 +6,17 @@
     <string name="add_to_library">Add to library</string>
     <string name="remove">Remove</string>
     <string name="oops_text">Browse some mangas to add</string>
+    <string name="all_chapters">All Chapters</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="automatic">Automatic</string>
+    <string name="select_default_theme">Select default theme</string>
+    <string name="theme_mode_sub_text">change the look and feel as per your preferences</string>
+    <string name="ui">UI</string>
+    <string name="select_accent_color">Select accent color</string>
+    <string name="choose_your_favorite_color_of_choice">choose your favorite color of choice</string>
+    <string name="github">GitHub</string>
+    <string name="find_us_on_github">Find us on GitHub</string>
+    <string name="raise_issue_join_the_community">raise issue, join the community</string>
+    <string name="search_hint">Enter name of any manga</string>
 </resources>

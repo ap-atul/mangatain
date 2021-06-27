@@ -3,13 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true"
     tools:context=".ui.detail.MangaDetails">
 
     <RelativeLayout
+        android:id="@+id/top_section"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/background_art"
@@ -78,88 +86,82 @@
 
         </LinearLayout>
 
+
         <TextView
             android:id="@+id/summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/background_art"
             android:layout_marginTop="10dp"
-            android:padding="5dp"
             android:fontFamily="@font/nunito_sans"
+            android:padding="5dp"
             android:textColor="@color/colorTextHigh"
             android:textSize="@dimen/text_big" />
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/add_to_lib"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/summary"
-            android:layout_marginEnd="20dp"
-            android:text="@string/add_to_library"
-            android:textColor="@color/colorTextMed"
-            android:contentDescription="@string/image"
-            app:backgroundTint="@color/fabTint"
-            app:icon="@drawable/ic_add_to_lib"
-            app:iconTint="@color/widgetsColor"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tag_list"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/add_to_lib" />
+            android:layout_below="@id/summary"
+            android:layout_marginTop="10dp"
+            android:nestedScrollingEnabled="false" />
+
+        <RelativeLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@id/tag_list"
+            android:layout_margin="5dp"
+            android:background="@drawable/tab_indicator" />
 
         <LinearLayout
-            android:id="@+id/more_info_layout"
+            android:id="@+id/buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
             android:layout_below="@id/tag_list"
-            android:background="@color/colorBackgroundHigh" >
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/total_chapters"
+                android:id="@+id/all_chapters"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:fontFamily="@font/nunito_sans"
-                android:textColor="@color/colorTextHigh"
-                android:textSize="@dimen/text_big"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/sort"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:background="?android:attr/actionBarItemBackground"
+                android:clickable="true"
                 android:contentDescription="@string/image"
-                android:padding="5dp"
-                android:paddingStart="10dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="5dp"
-                app:tint="@color/colorTextHigh"
-                app:srcCompat="@drawable/ic_sort" />
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:fontFamily="@font/nunito_sans"
+                android:padding="10dp"
+                android:text="@string/all_chapters"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextHigh"
+                android:textSize="@dimen/text_big_med"
+                app:drawableTopCompat="@drawable/ic_chapter_stack"
+                app:elevation="5dp" />
+
+            <TextView
+                android:id="@+id/add_to_lib"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:contentDescription="@string/image"
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:fontFamily="@font/nunito_sans"
+                android:padding="10dp"
+                android:text="@string/add_to_library"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextHigh"
+                android:textSize="@dimen/text_big_med"
+                app:drawableTopCompat="@drawable/ic_add_to_lib"
+                app:elevation="5dp" />
+
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chapter_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/more_info_layout" />
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="visible" />
 
     </RelativeLayout>
 
+
 </androidx.core.widget.NestedScrollView>
+

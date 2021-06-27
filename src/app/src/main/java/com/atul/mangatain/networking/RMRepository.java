@@ -14,15 +14,12 @@ public class RMRepository extends ViewModel {
     MutableLiveData<List<Manga>> mangas = new MutableLiveData<>();
     MutableLiveData<List<Manga>> search = new MutableLiveData<>();
     MutableLiveData<List<String>> pages = new MutableLiveData<>();
-    static int page  = 1;
 
     public RMRepository() {
     }
 
-    public MutableLiveData<List<Manga>> browse(String genre){
+    public MutableLiveData<List<Manga>> browse(int page, String genre){
         RClient.browse(mangas, page, genre);
-        page++;
-
         return mangas;
     }
 

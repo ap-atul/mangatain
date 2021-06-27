@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,7 +8,6 @@
     android:focusable="true"
     android:clickable="true"
     android:background="?selectableItemBackground"
-    android:orientation="vertical"
     android:padding="10dp">
 
     <TextView
@@ -23,8 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pub"
+        android:layout_below="@id/chapter_no"
         android:textColor="@color/colorTextMed"
         android:textSize="@dimen/text_medium"
         android:fontFamily="@font/nunito_sans"/>
 
-</LinearLayout>
+</RelativeLayout>

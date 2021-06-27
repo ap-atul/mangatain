@@ -29,6 +29,7 @@ public class BrowseFragment extends Fragment implements MangaListener {
     private MangaAdapter adapter;
 
     private final List<Manga> mangaList = new ArrayList<>();
+    private static int page = 1;
 
     public BrowseFragment() { }
 
@@ -54,8 +55,9 @@ public class BrowseFragment extends Fragment implements MangaListener {
 
         ProgressBar progressBar = view.findViewById(R.id.progress_bar);
 
-        repository.browse(null).observeForever(manga -> {
+        repository.browse(page, null).observeForever(manga -> {
             mangaList.addAll(manga);
+            page += 1;
             adapter.notifyDataSetChanged();
 
             progressBar.setVisibility(View.GONE);
@@ -72,6 +74,6 @@ public class BrowseFragment extends Fragment implements MangaListener {
 
     @Override
     public void loadMore() {
-        repository.browse(null);
+        repository.browse(page, null);
     }
 }

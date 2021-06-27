@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.atul.mangatain.adapter.MainPagerAdapter;
+import com.atul.mangatain.helpers.ThemeHelper;
 import com.github.piasy.biv.BigImageViewer;
 import com.github.piasy.biv.loader.glide.GlideImageLoader;
 import com.google.android.material.tabs.TabLayout;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(ThemeHelper.getTheme(MTPreferences.getTheme(getApplicationContext())));
         setContentView(R.layout.activity_main);
         BigImageViewer.initialize(GlideImageLoader.with(getApplicationContext()));
 

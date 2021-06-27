@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.atul.mangatain.MTConstants;
@@ -45,6 +46,7 @@ public class Manga implements Parcelable {
 
     public Manga(){}
 
+    @Ignore
     public Manga(String title, String url, String summary, String rating, String art, List<String> tags) {
         this.title = this.ifNull(title);
         this.art = this.ifNull(art);
@@ -54,6 +56,7 @@ public class Manga implements Parcelable {
         this.tags = tags;
     }
 
+    @Ignore
     protected Manga(Parcel in) {
         title = in.readString();
         art = in.readString();
