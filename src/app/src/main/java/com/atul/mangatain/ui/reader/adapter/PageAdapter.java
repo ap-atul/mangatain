@@ -1,4 +1,4 @@
-package com.atul.mangatain.ui.detail.adapter;
+package com.atul.mangatain.ui.reader.adapter;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -64,7 +64,6 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.MyVewHolder> {
 
                 @Override
                 public void onProgress(int progress) {
-
                 }
 
                 @Override

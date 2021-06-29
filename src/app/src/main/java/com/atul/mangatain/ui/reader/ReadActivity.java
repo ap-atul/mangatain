@@ -12,7 +12,7 @@ import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.Chapter;
 import com.atul.mangatain.networking.RMRepository;
-import com.atul.mangatain.ui.detail.adapter.PageAdapter;
+import com.atul.mangatain.ui.reader.adapter.PageAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
