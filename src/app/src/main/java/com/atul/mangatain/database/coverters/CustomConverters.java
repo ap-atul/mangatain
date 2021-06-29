@@ -1,10 +1,7 @@
 package com.atul.mangatain.database.coverters;
 
-import android.util.Log;
-
 import androidx.room.TypeConverter;
 
-import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.model.Chapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
