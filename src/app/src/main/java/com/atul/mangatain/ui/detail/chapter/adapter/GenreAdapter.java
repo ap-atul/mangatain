@@ -1,4 +1,4 @@
-package com.atul.mangatain.ui.detail.dialog.adapter;
+package com.atul.mangatain.ui.detail.chapter.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

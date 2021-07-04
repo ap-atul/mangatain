@@ -25,7 +25,7 @@ import com.atul.mangatain.model.Chapter;
 import com.atul.mangatain.model.Manga;
 import com.atul.mangatain.ui.detail.adapter.ChapterListener;
 import com.atul.mangatain.ui.detail.adapter.TagAdapter;
-import com.atul.mangatain.ui.detail.dialog.ChapterSheet;
+import com.atul.mangatain.ui.detail.chapter.ChapterSheet;
 import com.atul.mangatain.ui.detail.viewmodel.MangaDetailsViewModel;
 import com.atul.mangatain.ui.reader.ReadActivity;
 import com.bumptech.glide.Glide;

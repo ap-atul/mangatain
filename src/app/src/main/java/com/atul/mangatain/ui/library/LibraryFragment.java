@@ -19,6 +19,7 @@ import com.atul.mangatain.model.Manga;
 import com.atul.mangatain.ui.detail.MangaDetails;
 import com.atul.mangatain.ui.library.adapter.MangaAdapter;
 import com.atul.mangatain.ui.library.adapter.MangaListener;
+import com.atul.mangatain.ui.library.option.OptionSheet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +94,7 @@ public class LibraryFragment extends Fragment implements MangaListener {
 
     @Override
     public void remove(Manga manga) {
-        MangaDatabase.databaseExecutor.execute(() -> database.dao().delete(manga));
+        OptionSheet sheet = new OptionSheet(requireContext(), database, manga);
+        sheet.show();
     }
 }

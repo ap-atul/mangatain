@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atul.mangatain.MTConstants;
@@ -61,20 +60,11 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MyViewHolder
             title = itemView.findViewById(R.id.title);
             MaterialCardView mangaLayout = itemView.findViewById(R.id.manga_art_layout);
 
-            PopupMenu menu = new PopupMenu(itemView.getContext(), mangaLayout);
-            menu.inflate(R.menu.menu_library_item);
-            menu.setOnMenuItemClickListener((PopupMenu.OnMenuItemClickListener) item -> {
-                if(item.getItemId() == R.id.remove_manga)
-                    listener.remove(mangaList.get(getAdapterPosition()));
-
-                return false;
-            });
-
             mangaLayout.setOnClickListener(v ->
                     listener.click(mangaList.get(getAdapterPosition())));
 
             mangaLayout.setOnLongClickListener(v -> {
-                menu.show();
+                listener.remove(mangaList.get(getAdapterPosition()));
                 return true;
             });
         }

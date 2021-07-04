@@ -21,4 +21,6 @@
     <string name="search_hint">Enter name of any manga</string>
     <string name="reset">Reset</string>
     <string name="info_filter">GENRES</string>
+    <string name="options">OPTIONS</string>
+    <string name="remove_from_library">Remove from library</string>
 </resources>

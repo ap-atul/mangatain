@@ -2,7 +2,6 @@ package com.atul.mangatain.ui.browse;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.Manga;
 import com.atul.mangatain.networking.RMRepository;
@@ -21,7 +19,7 @@ import com.atul.mangatain.ui.browse.adapter.MangaAdapter;
 import com.atul.mangatain.ui.browse.adapter.MangaListener;
 import com.atul.mangatain.ui.browse.filter.FilterSheet;
 import com.atul.mangatain.ui.detail.MangaDetails;
-import com.atul.mangatain.ui.detail.dialog.adapter.GenreListener;
+import com.atul.mangatain.ui.detail.chapter.adapter.GenreListener;
 
 import java.util.ArrayList;
 import java.util.List;

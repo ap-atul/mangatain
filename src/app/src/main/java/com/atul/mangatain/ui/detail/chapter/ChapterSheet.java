@@ -1,4 +1,4 @@
-package com.atul.mangatain.ui.detail.dialog;
+package com.atul.mangatain.ui.detail.chapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,13 +30,16 @@ public class ChapterSheet extends BottomSheetDialog implements ChapterListener {
 
         TextView totalChapters = findViewById(R.id.total_chapters);
         RecyclerView chapterLayout = findViewById(R.id.chapter_list);
+        ImageView sort = findViewById(R.id.sort);
+
         assert chapterLayout != null;
+        assert sort != null;
+        assert totalChapters != null;
+
         chapterLayout.setHasFixedSize(true);
         chapterLayout.setItemViewCacheSize(10);
         chapterLayout.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ImageView sort = findViewById(R.id.sort);
-        assert sort != null;
         sort.setOnClickListener(v -> {
             Collections.reverse(chapters);
             chapterAdapter.notifyDataSetChanged();
@@ -44,7 +47,6 @@ public class ChapterSheet extends BottomSheetDialog implements ChapterListener {
 
         chapterAdapter = new ChapterAdapter(this, chapters);
         chapterLayout.setAdapter(chapterAdapter);
-        assert totalChapters != null;
         totalChapters.setText(String.format(Locale.getDefault(), "Chapters %d", chapters.size()));
     }
 

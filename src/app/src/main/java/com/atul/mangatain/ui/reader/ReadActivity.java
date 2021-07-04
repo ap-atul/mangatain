@@ -1,6 +1,8 @@
 package com.atul.mangatain.ui.reader;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -38,11 +40,15 @@ public class ReadActivity extends AppCompatActivity {
         pageAdapter = new PageAdapter( pages);
         pageLayout.setAdapter(pageAdapter);
 
+        ProgressBar progressBar = findViewById(R.id.progress_bar);
+
         Chapter chapter = getIntent().getParcelableExtra("chapter");
         if (chapter != null) {
             repository.pages(chapter).observeForever(page -> {
                 pages.addAll(page);
                 pageAdapter.notifyDataSetChanged();
+
+                progressBar.setVisibility(View.GONE);
             });
         }
     }

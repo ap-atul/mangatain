@@ -3,14 +3,13 @@ package com.atul.mangatain.ui.browse.filter;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atul.mangatain.R;
 import com.atul.mangatain.readm.RClient;
-import com.atul.mangatain.ui.detail.dialog.adapter.GenreAdapter;
-import com.atul.mangatain.ui.detail.dialog.adapter.GenreListener;
+import com.atul.mangatain.ui.detail.chapter.adapter.GenreAdapter;
+import com.atul.mangatain.ui.detail.chapter.adapter.GenreListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 
