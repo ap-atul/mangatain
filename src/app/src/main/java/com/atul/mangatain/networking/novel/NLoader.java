@@ -1,8 +1,11 @@
 package com.atul.mangatain.networking.novel;
 
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
+import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.model.Novel;
 import com.atul.mangatain.model.NovelChapter;
 
@@ -67,10 +70,9 @@ public class NLoader {
                     for (Element aut: item.select("li"))
                         author.append(" ").append(aut.text());
 
-                if(header.equals("Status")){
+                if(header.equals("Status"))
                     status = item.select("li").text();
-                    break;
-                }
+
             }
 
             for(Element chp: doc.select("div[class=tab-content]").select("li")){

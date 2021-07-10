@@ -1,11 +1,13 @@
 package com.atul.mangatain.ui.novel;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -13,7 +15,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.atul.mangatain.MTConstants;
+import com.atul.mangatain.MTPreferences;
 import com.atul.mangatain.R;
+import com.atul.mangatain.helpers.ThemeHelper;
 import com.atul.mangatain.model.Novel;
 import com.atul.mangatain.ui.novel.chapter.ChapterSheet;
 import com.atul.mangatain.ui.novel.adapter.TagAdapter;
@@ -39,11 +43,13 @@ public class NovelDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(MTPreferences.getThemeMode(getApplicationContext()));
+        setTheme(ThemeHelper.getTheme(MTPreferences.getTheme(getApplicationContext())));
         setContentView(R.layout.activity_novel_detail);
 
         viewModel = new ViewModelProvider(this).get(NovelViewModel.class);
 
-        art = findViewById(R.id.manga_art);
+        art = findViewById(R.id.novel_art);
         background = findViewById(R.id.background_art);
         title = findViewById(R.id.title);
         author = findViewById(R.id.author);
@@ -75,6 +81,9 @@ public class NovelDetailActivity extends AppCompatActivity {
 
     private void setUpUi(Novel novel) {
         this.novel = novel;
+
+        Log.d(MTConstants.DEBUG_TAG, novel.toString());
+
         Glide.with(this).load(novel.art).into(art);
         Glide.with(this).load(novel.art).centerCrop().into(background);
         title.setText(novel.title);

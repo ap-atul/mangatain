@@ -1,17 +1,19 @@
 package com.atul.mangatain.ui.novel.chapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.NovelChapter;
 import com.atul.mangatain.ui.novel.adapter.ChapterAdapter;
 import com.atul.mangatain.ui.novel.adapter.ChapterListener;
+import com.atul.mangatain.ui.pager.NovelPager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Collections;
@@ -36,7 +38,7 @@ public class ChapterSheet extends BottomSheetDialog implements ChapterListener {
 
         chapterLayout.setHasFixedSize(true);
         chapterLayout.setItemViewCacheSize(10);
-        chapterLayout.setLayoutManager(new LinearLayoutManager(getContext()));
+        chapterLayout.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
         sort.setOnClickListener(v -> {
             Collections.reverse(chapters);
@@ -50,6 +52,7 @@ public class ChapterSheet extends BottomSheetDialog implements ChapterListener {
 
     @Override
     public void click(NovelChapter chapter) {
-        // go to reader
+        getContext().startActivity(new Intent(getContext(), NovelPager.class)
+        .putExtra("chapter", chapter));
     }
 }

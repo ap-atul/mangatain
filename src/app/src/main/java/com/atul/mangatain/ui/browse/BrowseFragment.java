@@ -11,29 +11,24 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.Manga;
 import com.atul.mangatain.networking.RMRepository;
-import com.atul.mangatain.ui.browse.adapter.MangaAdapter;
-import com.atul.mangatain.ui.browse.adapter.MangaListener;
-import com.atul.mangatain.ui.browse.filter.FilterSheet;
+import com.atul.mangatain.ui.browse.manga.adapter.MangaAdapter;
+import com.atul.mangatain.ui.browse.manga.adapter.MangaListener;
+import com.atul.mangatain.ui.browse.manga.filter.FilterSheet;
 import com.atul.mangatain.ui.detail.MangaDetails;
 import com.atul.mangatain.ui.detail.chapter.adapter.GenreListener;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class BrowseFragment extends Fragment implements MangaListener, GenreListener {
-
-    private RMRepository repository;
-    private MangaAdapter adapter;
-
-    private final List<Manga> mangaList = new ArrayList<>();
-    private static int page = 1;
-    private static String genre = null;
-    private FilterSheet sheet;
+public class BrowseFragment extends Fragment  {
 
     public BrowseFragment() { }
 
@@ -44,7 +39,6 @@ public class BrowseFragment extends Fragment implements MangaListener, GenreList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        repository = new ViewModelProvider(requireActivity()).get(RMRepository.class);
     }
 
     @Override
@@ -52,46 +46,15 @@ public class BrowseFragment extends Fragment implements MangaListener, GenreList
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_browse, container, false);
 
-        RecyclerView mangaLayout = view.findViewById(R.id.manga_layout);
-        mangaLayout.setLayoutManager(new GridLayoutManager(requireContext(), 3));
-        adapter = new MangaAdapter(this, mangaList);
-        mangaLayout.setAdapter(adapter);
+        BrowsePagerAdapter pagerAdapter = new BrowsePagerAdapter(getChildFragmentManager());
 
-        ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+        ViewPager viewPager = view.findViewById(R.id.view_pager);
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setOffscreenPageLimit(MTConstants.TAB_ICONS.length);
 
-        repository.browse(page, genre).observeForever(manga -> {
-            mangaList.addAll(manga);
-            page += 1;
-            adapter.notifyDataSetChanged();
-
-            progressBar.setVisibility(View.GONE);
-        });
-
-        view.findViewById(R.id.filter).setOnClickListener(v -> {
-            sheet = new FilterSheet(requireContext(), this, genre);
-            sheet.show();
-        });
+        TabLayout tabs = view.findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
 
         return view;
-    }
-
-    @Override
-    public void click(Manga manga) {
-        startActivity(new Intent(requireActivity(), MangaDetails.class)
-        .putExtra("manga", manga));
-    }
-
-    @Override
-    public void loadMore() {
-        repository.browse(page, genre);
-    }
-
-    @Override
-    public void select(String gen) {
-        genre =  gen;
-        page = 1; // restarting from first page
-        mangaList.clear(); // clearing to load all in current genre
-        repository.browse(page, genre);
-        sheet.dismiss();
     }
 }

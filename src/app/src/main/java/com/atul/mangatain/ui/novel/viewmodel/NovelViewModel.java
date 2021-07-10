@@ -9,15 +9,9 @@ import com.atul.mangatain.networking.novel.NClient;
 
 public class NovelViewModel extends ViewModel {
     private final MutableLiveData<Novel> detail = new MutableLiveData<>();
-    private final MutableLiveData<NovelChapter> chapter = new MutableLiveData<>();
 
     public MutableLiveData<Novel> detail(Novel novel){
         NClient.novel(detail, novel);
         return detail;
-    }
-
-    public MutableLiveData<NovelChapter> chapter(NovelChapter chp){
-        NClient.page(chapter, chp);
-        return chapter;
     }
 }
