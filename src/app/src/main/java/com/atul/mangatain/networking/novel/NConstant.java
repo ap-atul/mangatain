@@ -21,8 +21,9 @@ public class NConstant {
     public static final HashMap<String, String> genres = new HashMap<String, String>() {{
         put("Action", "action");
         put("Adventure", "adventure");
+        put("Celebrity", "celebrity");
         put("Comedy", "comedy");
-        put("Doujinshi", "doujinshi");
+        put("Dark Fantasy", "dark-fantasy");
         put("Drama", "drama");
         put("Ecchi", "ecchi");
         put("Fantasy", "fantasy");
@@ -31,18 +32,15 @@ public class NConstant {
         put("Historical", "historical");
         put("Horror", "horror");
         put("Josei", "josei");
-        put("Lolicon", "lolicon");
-        put("Manhua", "manhua");
-        put("Manhwa", "manhwa");
+        put("LitRPG", "litrpg");
         put("Martial Arts", "martial-arts");
+        put("Mature", "mature");
         put("Mecha", "mecha");
         put("Mystery", "mystery");
-        put("None", "none");
-        put("One shot", "one-shot");
         put("Psychological", "psychological");
         put("Romance", "romance");
         put("School Life", "school-life");
-        put("Sci fi", "sci-fi");
+        put("Sci-fi", "sci-fi");
         put("Seinen", "seinen");
         put("Shotacon", "shotacon");
         put("Shoujo", "shoujo");
@@ -50,9 +48,13 @@ public class NConstant {
         put("Shounen", "shounen");
         put("Shounen Ai", "shounen-ai");
         put("Slice of Life", "slice-of-life");
+        put("Smut", "smut");
         put("Sports", "sports");
         put("Supernatural", "supernatural");
         put("Tragedy", "tragedy");
+        put("Wuxia", "wuxia");
+        put("Xianxia", "xianxia");
+        put("Xuanhuan", "xuanhuan");
         put("Yaoi", "yaoi");
         put("Yuri", "yuri");
     }};

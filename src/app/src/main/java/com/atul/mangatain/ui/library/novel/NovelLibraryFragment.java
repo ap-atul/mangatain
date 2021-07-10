@@ -64,7 +64,7 @@ public class NovelLibraryFragment extends Fragment implements NovelListener {
 
             if (novel.size() == 0) {
                 oops.setText(MTConstants.OOPS[new Random().nextInt(MTConstants.OOPS.length)]);
-                oopsText.setText(R.string.oops_text);
+                oopsText.setText(R.string.oops_text_novel);
                 visibility(View.VISIBLE);
             } else {
                 visibility(View.GONE);

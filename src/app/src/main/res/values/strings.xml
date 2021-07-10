@@ -6,6 +6,7 @@
     <string name="add_to_library">Add to library</string>
     <string name="remove">Remove</string>
     <string name="oops_text">Browse some mangas to add</string>
+    <string name="oops_text_novel">Browse some novels to add</string>
     <string name="all_chapters">All Chapters</string>
     <string name="light">Light</string>
     <string name="dark">Dark</string>

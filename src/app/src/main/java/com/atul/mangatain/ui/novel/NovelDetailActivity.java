@@ -22,6 +22,7 @@ import com.atul.mangatain.database.MangaDatabase;
 import com.atul.mangatain.database.NovelDao;
 import com.atul.mangatain.helpers.ThemeHelper;
 import com.atul.mangatain.model.Novel;
+import com.atul.mangatain.networking.novel.NLoader;
 import com.atul.mangatain.ui.novel.chapter.ChapterSheet;
 import com.atul.mangatain.ui.novel.adapter.TagAdapter;
 import com.atul.mangatain.ui.novel.viewmodel.NovelViewModel;
@@ -67,8 +68,7 @@ public class NovelDetailActivity extends AppCompatActivity {
 
         parseIncomingData();
         findViewById(R.id.add_to_lib).setOnClickListener(v -> {
-            MangaDatabase.databaseExecutor.execute(() ->
-                    dao.add(novel));
+            MangaDatabase.databaseExecutor.execute(() -> dao.add(novel));
             Toast.makeText(this, "Novel was added to the library", Toast.LENGTH_SHORT).show();
         });
 
