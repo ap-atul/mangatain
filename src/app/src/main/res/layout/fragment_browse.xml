@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_weight="0"
-            android:background="@color/windowBackground"
             app:tabIconTint="@color/tab_color"
             app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorAnimationMode="linear"

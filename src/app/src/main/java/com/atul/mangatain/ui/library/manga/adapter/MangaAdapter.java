@@ -1,4 +1,4 @@
-package com.atul.mangatain.ui.search.adapter;
+package com.atul.mangatain.ui.library.manga.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.R;
 import com.atul.mangatain.model.Manga;
 import com.bumptech.glide.Glide;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
@@ -57,9 +58,15 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MyViewHolder
 
             art = itemView.findViewById(R.id.manga_art);
             title = itemView.findViewById(R.id.title);
+            MaterialCardView mangaLayout = itemView.findViewById(R.id.manga_art_layout);
 
-            itemView.findViewById(R.id.manga_art_layout).setOnClickListener(v ->
+            mangaLayout.setOnClickListener(v ->
                     listener.click(mangaList.get(getAdapterPosition())));
+
+            mangaLayout.setOnLongClickListener(v -> {
+                listener.remove(mangaList.get(getAdapterPosition()));
+                return true;
+            });
         }
     }
 }

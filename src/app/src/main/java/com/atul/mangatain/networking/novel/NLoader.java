@@ -1,11 +1,8 @@
 package com.atul.mangatain.networking.novel;
 
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
-import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.model.Novel;
 import com.atul.mangatain.model.NovelChapter;
 

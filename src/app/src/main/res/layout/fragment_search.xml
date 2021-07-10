@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundHigh">
+    tools:context=".MainActivity">
 
-    <SearchView
-        android:id="@+id/search"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:queryHint="@string/search_hint"
-        android:iconifiedByDefault="false"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/manga_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search"
-        android:layout_marginTop="10dp"/>
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:queryHint="@string/search_hint"
+            android:iconifiedByDefault="false" />
 
-</RelativeLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            style="?attr/tabStyle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="0"
+            app:tabIconTint="@color/tab_color"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorAnimationMode="linear"
+            app:tabIndicatorFullWidth="true"
+            app:tabRippleColor="?colorPrimary" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

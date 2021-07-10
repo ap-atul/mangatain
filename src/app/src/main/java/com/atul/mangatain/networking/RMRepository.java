@@ -5,10 +5,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.atul.mangatain.model.Chapter;
 import com.atul.mangatain.model.Manga;
-import com.atul.mangatain.readm.RClient;
+import com.atul.mangatain.networking.readm.RClient;
 
 import java.util.List;
-import java.util.Set;
 
 public class RMRepository extends ViewModel {
     MutableLiveData<List<Manga>> mangas = new MutableLiveData<>();

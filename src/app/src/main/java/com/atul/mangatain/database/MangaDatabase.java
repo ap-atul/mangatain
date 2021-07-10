@@ -10,13 +10,14 @@ import androidx.room.TypeConverters;
 import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.database.coverters.CustomConverters;
 import com.atul.mangatain.model.Manga;
+import com.atul.mangatain.model.Novel;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@TypeConverters({CustomConverters.StringConverter.class, CustomConverters.ChapterConverter.class})
-@Database(entities = {Manga.class}, version = MTConstants.DATABASE_VERSION, exportSchema = false)
+@TypeConverters({CustomConverters.StringConverter.class, CustomConverters.ChapterConverter.class, CustomConverters.NovelChapterConverter.class})
+@Database(entities = {Manga.class, Novel.class}, version = MTConstants.DATABASE_VERSION, exportSchema = false)
 public abstract class MangaDatabase extends RoomDatabase {
 
     public static final ExecutorService databaseExecutor = Executors.newSingleThreadExecutor();
@@ -35,5 +36,6 @@ public abstract class MangaDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    public abstract MangaDao dao();
+    public abstract MangaDao mangaDao();
+    public abstract NovelDao novelDao();
 }

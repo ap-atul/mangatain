@@ -50,7 +50,6 @@ public class BrowseFragment extends Fragment  {
 
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setOffscreenPageLimit(MTConstants.TAB_ICONS.length);
 
         TabLayout tabs = view.findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);

@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundHigh"
-    tools:context=".ui.browse.BrowseFragment">
+    tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/manga_layout"/>
+        android:orientation="vertical">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:id="@+id/progress_bar"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            style="?attr/tabStyle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="0"
+            app:tabIconTint="@color/tab_color"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorAnimationMode="linear"
+            app:tabIndicatorFullWidth="true"
+            app:tabRippleColor="?colorPrimary" />
 
-    <TextView
-        android:id="@+id/oops"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="40sp"
-        android:textColor="@color/colorTextLow"/>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <TextView
-        android:id="@+id/oops_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/oops"
-        android:textSize="@dimen/text_big"
-        android:textColor="@color/colorTextLow"
-        android:fontFamily="@font/nunito_sans"/>
+    </LinearLayout>
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

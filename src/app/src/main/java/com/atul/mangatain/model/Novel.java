@@ -3,9 +3,18 @@ package com.atul.mangatain.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import com.atul.mangatain.MTConstants;
+
 import java.util.List;
 
+@Entity(tableName = MTConstants.NOVEL_TABLE)
 public class Novel implements Parcelable {
+    @NonNull
+    @PrimaryKey
     public String title;
     public String art;
     public String description;
@@ -16,7 +25,9 @@ public class Novel implements Parcelable {
     public List<String> tags;
     public List<NovelChapter> chapters;
 
-    public Novel() {}
+    public Novel() {
+        title = null;
+    }
 
     public Novel(String url, String title, String art, String description, String author, String status, String rating, List<String> tags, List<NovelChapter> chapters) {
         this.url = url;
@@ -76,6 +87,7 @@ public class Novel implements Parcelable {
         dest.writeTypedList(chapters);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Novel{" +

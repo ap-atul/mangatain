@@ -13,10 +13,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.atul.mangatain.MTConstants;
 import com.atul.mangatain.MTPreferences;
 import com.atul.mangatain.R;
+import com.atul.mangatain.database.MangaDatabase;
+import com.atul.mangatain.database.NovelDao;
 import com.atul.mangatain.helpers.ThemeHelper;
 import com.atul.mangatain.model.Novel;
 import com.atul.mangatain.ui.novel.chapter.ChapterSheet;
@@ -48,6 +51,7 @@ public class NovelDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_novel_detail);
 
         viewModel = new ViewModelProvider(this).get(NovelViewModel.class);
+        NovelDao dao = MangaDatabase.getDatabase(this).novelDao();
 
         art = findViewById(R.id.novel_art);
         background = findViewById(R.id.background_art);
@@ -62,6 +66,12 @@ public class NovelDetailActivity extends AppCompatActivity {
         tagList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
         parseIncomingData();
+        findViewById(R.id.add_to_lib).setOnClickListener(v -> {
+            MangaDatabase.databaseExecutor.execute(() ->
+                    dao.add(novel));
+            Toast.makeText(this, "Novel was added to the library", Toast.LENGTH_SHORT).show();
+        });
+
         findViewById(R.id.all_chapters).setOnClickListener(v -> setUpChapterSheet());
     }
 
@@ -81,9 +91,6 @@ public class NovelDetailActivity extends AppCompatActivity {
 
     private void setUpUi(Novel novel) {
         this.novel = novel;
-
-        Log.d(MTConstants.DEBUG_TAG, novel.toString());
-
         Glide.with(this).load(novel.art).into(art);
         Glide.with(this).load(novel.art).centerCrop().into(background);
         title.setText(novel.title);

@@ -55,7 +55,7 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
         setContentView(R.layout.activity_manga_details);
 
         repository = new ViewModelProvider(this).get(MangaDetailsViewModel.class);
-        dao = MangaDatabase.getDatabase(this).dao();
+        dao = MangaDatabase.getDatabase(this).mangaDao();
 
         art = findViewById(R.id.manga_art);
         background = findViewById(R.id.background_art);
@@ -101,7 +101,11 @@ public class MangaDetails extends AppCompatActivity implements ChapterListener {
         summary.setText(manga.summary);
 
         if (manga.rating != null && manga.rating.length() > 0)
-            rating.setRating(Float.parseFloat(manga.rating));
+            try {
+                rating.setRating(Float.parseFloat(manga.rating));
+            } catch (NumberFormatException e) {
+                rating.setRating(1);
+            }
 
         if (manga.tags != null)
             tagList.setAdapter(new TagAdapter(manga.tags));

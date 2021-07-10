@@ -1,4 +1,4 @@
-package com.atul.mangatain.ui.browse;
+package com.atul.mangatain.ui.search;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.atul.mangatain.ui.browse.manga.MangaBrowseFragment;
-import com.atul.mangatain.ui.browse.novel.NovelBrowseFragment;
+import com.atul.mangatain.ui.search.manga.MangaSearchFragment;
+import com.atul.mangatain.ui.search.novel.NovelSearchFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrowsePagerAdapter extends FragmentStatePagerAdapter {
+public class SearchPagerAdapter extends FragmentStatePagerAdapter {
 
     List<Fragment> fragments = new ArrayList<>();
     List<String> titles = new ArrayList<String>() {{
@@ -20,15 +20,11 @@ public class BrowsePagerAdapter extends FragmentStatePagerAdapter {
         add("Novel");
     }};
 
-    public BrowsePagerAdapter(FragmentManager fm) {
+    public SearchPagerAdapter(FragmentManager fm, String query) {
         super(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
-        setFragments();
-    }
-
-    public void setFragments() {
-        fragments.add(MangaBrowseFragment.newInstance());
-        fragments.add(NovelBrowseFragment.newInstance());
+        fragments.add(MangaSearchFragment.newInstance(query));
+        fragments.add(NovelSearchFragment.newInstance(query));
     }
 
     @NonNull

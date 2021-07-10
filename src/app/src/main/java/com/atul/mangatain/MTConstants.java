@@ -19,6 +19,7 @@ public class MTConstants {
     // database constants
     public static final String MANGA_DB = "manga_db";
     public static final String MANGA_TABLE = "manga";
+    public static final String NOVEL_TABLE = "novel";
 
     public static final String[] OOPS = new String[] {
             "¯\\_(ツ)_/¯",
@@ -29,7 +30,7 @@ public class MTConstants {
             "(ø_ø)",
             "＼（〇_ｏ）／"
     };
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
 
     public static final String SETTINGS_THEME = "shared_pref_theme";

@@ -1,4 +1,4 @@
-package com.atul.mangatain.ui.library.option;
+package com.atul.mangatain.ui.library.novel.option;
 
 import android.content.Context;
 import android.widget.TextView;
@@ -8,11 +8,11 @@ import androidx.annotation.NonNull;
 
 import com.atul.mangatain.R;
 import com.atul.mangatain.database.MangaDatabase;
-import com.atul.mangatain.model.Manga;
+import com.atul.mangatain.model.Novel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class OptionSheet extends BottomSheetDialog {
-    public OptionSheet(@NonNull Context context, MangaDatabase database, Manga manga) {
+    public OptionSheet(@NonNull Context context, MangaDatabase database, Novel novel) {
         super(context);
         setContentView(R.layout.option_sheet);
 
@@ -20,8 +20,8 @@ public class OptionSheet extends BottomSheetDialog {
         assert removeOption != null;
 
         removeOption.setOnClickListener(v -> {
-            MangaDatabase.databaseExecutor.execute(() -> database.dao().delete(manga));
-            Toast.makeText(getContext(), "Manga removed from library", Toast.LENGTH_SHORT).show();
+            MangaDatabase.databaseExecutor.execute(() -> database.novelDao().delete(novel));
+            Toast.makeText(getContext(), "Novel removed from library", Toast.LENGTH_SHORT).show();
             dismiss();
         });
     }

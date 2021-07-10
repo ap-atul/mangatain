@@ -153,7 +153,21 @@ class RLoader {
 					.body();
 
 			author = doc.select("div[class=sub-title pt-sm]").text();
-			status = doc.select("span[class=series-status aqua]").text();} catch (IOException e) {
+			status = doc.select("span[class=series-status aqua]").text();
+
+			if(manga.summary.equals(""))
+				manga.summary = doc.select("div[class=series-summary-wrapper]").select("p").select("span").text();
+
+			if(manga.rating.equals("0"))
+				manga.rating = doc.select("div[class=color-imdb]").text();
+
+			if(manga.tags == null) {
+				manga.tags = new ArrayList<>();
+				for (Element gen : doc.select("div[class=series-summary-wrapper]").select("div[class=ui list]").select("a"))
+					manga.tags.add(gen.attr("title"));
+			}
+
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 

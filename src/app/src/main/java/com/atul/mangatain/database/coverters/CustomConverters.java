@@ -3,6 +3,7 @@ package com.atul.mangatain.database.coverters;
 import androidx.room.TypeConverter;
 
 import com.atul.mangatain.model.Chapter;
+import com.atul.mangatain.model.NovelChapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -21,6 +22,19 @@ public class CustomConverters {
 
         @TypeConverter
         public static String chapterToStr(List<Chapter> chapters){
+            return gson.toJson(chapters);
+        }
+    }
+
+    public static class NovelChapterConverter{
+        @TypeConverter
+        public static List<NovelChapter> strToChapter(String data){
+            if(data == null) return Collections.emptyList();
+            return gson.fromJson(data, new TypeToken<List<NovelChapter>>() {}.getType());
+        }
+
+        @TypeConverter
+        public static String chapterToStr(List<NovelChapter> chapters){
             return gson.toJson(chapters);
         }
     }
