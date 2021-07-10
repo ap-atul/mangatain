@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/novel_art_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:rippleColor="?colorPrimary">
+
+        <ImageView
+            android:id="@+id/novel_art"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:foreground="@drawable/gradient"
+            android:contentDescription="@string/image"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:textDirection="ltr"
+            android:layout_gravity="bottom"
+            android:maxLines="2"
+            android:textSize="@dimen/text_big_med"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            tools:ignore="RtlCompat"
+            android:fontFamily="@font/nunito_sans"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.atul.mangatain.ui.browse.filter;
+package com.atul.mangatain.ui.browse.novel.filter;
 
 import android.content.Context;
 
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atul.mangatain.R;
-import com.atul.mangatain.readm.RClient;
-import com.atul.mangatain.ui.detail.chapter.adapter.GenreAdapter;
-import com.atul.mangatain.ui.detail.chapter.adapter.GenreListener;
+import com.atul.mangatain.networking.readm.RClient;
+import com.atul.mangatain.ui.browse.novel.filter.adapter.GenreAdapter;
+import com.atul.mangatain.ui.browse.novel.filter.adapter.GenreListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 

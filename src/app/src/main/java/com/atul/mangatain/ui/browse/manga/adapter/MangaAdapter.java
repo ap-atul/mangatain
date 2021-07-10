@@ -1,4 +1,4 @@
-package com.atul.mangatain.ui.browse.adapter;
+package com.atul.mangatain.ui.browse.manga.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
