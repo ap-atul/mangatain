@@ -7,17 +7,21 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AP-Atul/mangatain/releases/download/v0.1/mangatain.apk" > Download </a>
+  <a href="https://github.com/AP-Atul/mangatain/releases/download/v0.2/mangatain.apk" > Download </a>
 </p>
 
 
 ---
+### What's new
+* Added Light Novel browsing.
+
+
 ### Features
 
 * No login, No ads, always free
-* Browse unlimited manga
+* Browse unlimited manga and light novels
 * Browse by genres
-* Add manga to your library for easy access
+* Add manga/novels to your library for easy access
 * Simple and elegant design
 * Dark and Light mode
 * Customize the app with different accent colors
