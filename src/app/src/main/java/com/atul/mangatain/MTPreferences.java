@@ -5,9 +5,6 @@ import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class MTPreferences {
     private static SharedPreferences.Editor getEditor(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
