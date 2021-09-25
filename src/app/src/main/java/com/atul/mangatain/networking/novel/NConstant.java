@@ -3,11 +3,11 @@ package com.atul.mangatain.networking.novel;
 import java.util.HashMap;
 
 public class NConstant {
-    public static final String BROWSE_URL = "https://www.readlightnovel.org/top-novel/%d";
+    public static final String BROWSE_URL = "https://www.readlightnovel.me/top-novel/%d";
 
-    public static final String BROWSE_GENRE = "https://www.readlightnovel.org/category/%s/%d";
+    public static final String BROWSE_GENRE = "https://www.readlightnovel.me/category/%s/%d";
 
-    public static final String SEARCH_URL = "https://www.readlightnovel.org/search/autocomplete";
+    public static final String SEARCH_URL = "https://www.readlightnovel.me/search/autocomplete";
 
     // headers
     public static final HashMap<String, String> HEADERS = new HashMap<String, String> () {{
