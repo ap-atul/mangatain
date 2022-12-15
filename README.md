@@ -12,6 +12,9 @@
 
 
 ---
+### Notice
+<samp>Reworking on light novel app here = https://github.com/ranobe-org</samp>
+
 ### What's new
 * Added Light Novel browsing.
 
